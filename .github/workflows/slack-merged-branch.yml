@@ -2,9 +2,6 @@ name: Slack notification about merged branches
 
 on:
   workflow_call:
-    secrets:
-      SLACK_CHANNEL_ID:
-        required: true
 
 jobs:
   diff:
