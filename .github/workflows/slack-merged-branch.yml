@@ -30,7 +30,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
         with:
-          channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+          channel-id: ${{ vars.SLACK_CHANNEL_ID }}
           payload: |
             {
               "text": "Following branch(es) are going to be merged into ${{ github.base_ref }}:", 
