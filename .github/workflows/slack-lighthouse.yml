@@ -1,7 +1,7 @@
 name: Slack Lighthouse scores
 
 on:
-  call-workflow:
+  call_lighthouse_workflow:
     secrets:
       LIGHTHOUSE_CHECK_WEBHOOK_URL:
         required: true
