@@ -8,6 +8,7 @@ on:
     inputs:
       urls:
         required: true
+        type: string
 
 jobs:
   lighthouse:
