@@ -1,0 +1,21 @@
+name: Slack Lighthouse scores
+
+on:
+  workflow_call:
+    secrets:
+      LIGHTHOUSE_CHECK_WEBHOOK_URL:
+        required: true
+    inputs:
+      urls:
+        required: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Lighthouse
+      uses: foo-software/lighthouse-check-action@master
+      with:
+        urls: ${{ urls }}
+        slackWebhookUrl: ${{ secrets.LIGHTHOUSE_CHECK_WEBHOOK_URL }}

@@ -1,4 +1,4 @@
-name: Slack notification about merged branches
+name: Slack Merged branches
 
 on:
   workflow_call:
