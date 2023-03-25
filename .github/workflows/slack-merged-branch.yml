@@ -2,6 +2,13 @@ name: Slack Merged branches
 
 on:
   workflow_call:
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: true
+    inputs:
+      channelId:
+        required: true
+        type: string
 
 jobs:
   diff:
@@ -27,7 +34,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
         with:
-          channel-id: ${{ vars.SLACK_CHANNEL_ID }}
+          channel-id: ${{ inputs.channelId }}
           payload: |
             {
               "text": "Following branch(es) are going to be merged into ${{ github.base_ref }}:", 
