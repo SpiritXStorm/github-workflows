@@ -37,7 +37,7 @@ jobs:
         if: "${{ inputs.header != '' }}"
         uses: slackapi/slack-github-action@v1.23.0
         with:
-          channel-id: ${{ inputs.channelId }},
+          channel-id: ${{ inputs.channelId }}
           payload: |
             {
               "text": "${{ inputs.header }}",
