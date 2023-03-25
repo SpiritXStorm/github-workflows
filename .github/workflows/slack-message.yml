@@ -1,0 +1,27 @@
+name: Slack Message
+
+on:
+  workflow_call:
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: true
+    inputs:
+      channelId:
+        required: true
+        type: string
+      message:
+        required: true
+        type: string
+
+jobs:
+  message:
+    runs-on: ubuntu-latest
+
+    steps:         
+      - name: Send Message to Slack channel
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ inputs.channelId }}
+          slack-message: ${{ inputs.message }}
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
