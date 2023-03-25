@@ -18,5 +18,5 @@ jobs:
     - name: Lighthouse
       uses: foo-software/lighthouse-check-action@master
       with:
-        urls: ${{ inputs.urls }}
+        urlsJson: ${{ inputs.urls }}
         slackWebhookUrl: ${{ secrets.LIGHTHOUSE_CHECK_WEBHOOK_URL }}
