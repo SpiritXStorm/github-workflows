@@ -40,14 +40,14 @@ jobs:
           channel-id: ${{ inputs.channelId }},
           payload: |
             {
-              "text": ${{ inputs.header }},
+              "text": "${{ inputs.header }}",
               "attachments": [
                 {
-                  "color": ${{ inputs.color }},
+                  "color": "${{ inputs.color }}",
                   "fields": [
                     {
                       "short": true,
-                      "value": ${{ inputs.message }}
+                      "value": "${{ inputs.message }}"
                     }
                   ]
                 }
