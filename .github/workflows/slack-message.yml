@@ -12,6 +12,12 @@ on:
       message:
         required: true
         type: string
+      header:
+        required: false
+        type: string
+      color:
+        default: "0063ff"
+        type: string
 
 jobs:
   message:
@@ -19,9 +25,33 @@ jobs:
 
     steps:         
       - name: Send Message to Slack channel
+        if: "${{ inputs.header == '' }}"
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: ${{ inputs.channelId }}
           slack-message: ${{ inputs.message }}
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          
+      - name: Send Message to Slack channel
+        if: "${{ inputs.header != '' }}"
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{ inputs.channelId }},
+          payload: |
+            {
+              "text": ${{ inputs.header }},
+              "attachments": [
+                {
+                  "color": ${{ inputs.color }},
+                  "fields": [
+                    {
+                      "short": true,
+                      "value": ${{ inputs.message }}
+                    }
+                  ]
+                }
+              ]
+            }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
